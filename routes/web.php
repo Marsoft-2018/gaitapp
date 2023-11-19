@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ParticipanteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,10 +32,16 @@ Route::get('/admin/cuentas', function() {
     return view('admin/cuentas');
 })->name('cuentas')->middleware('auth');
 
-Route::get('/admin/participantes', function() {
-    return view('admin/participantes');
-})->name('participantes')->middleware('auth');
 
-Route::get('/admin/participantes/create', function() {
-    return view('admin/participantes-create');
-})->name('participantes')->middleware('auth');
+Route::resource('participantes',ParticipanteController::class,)->names('admin.participantes');
+// Route::get('/admin/participantes',[ParticipanteController::class,'index'], function() {
+//     return view('admin/participantes/index');
+// })->name('participantes')->middleware('auth');
+
+// Route::get('/admin/participantes/create', function() {
+//     return view('admin/participantes/create');
+// })->name('participantes')->middleware('auth');
+
+// Route::post('/admin/participantes/create',[ParticipanteController::class,'store'], function() {
+//     return view('admin/participantes/create');
+// })->name('participantes')->middleware('auth');

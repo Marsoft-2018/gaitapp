@@ -23,12 +23,33 @@
                         <x-adminlte-input name="name" label="Segundo Apellido" fgroup-class="col-md-6"/>
                     </div>
                     <div class="row">
+                        <div class="col-md-6">
+                            <x-adminlte-select name="selBasic" label="Tipo Documento" >
+                                <option>Option 1</option>
+                                <option disabled>Option 2</option>
+                                <option selected>Option 3</option>
+                            </x-adminlte-select>
+                        </div>
+                    </div>
+                    <div class="row">
                         <x-adminlte-input name="name" label="Documento" placeholder="Ingrese el número del documento"
                               fgroup-class="col-md-6"/>
                     </div>
+                    
                     <div class="row">
-                        <x-adminlte-input name="name" label="Documento" placeholder="Documento del evento"
+                        <x-adminlte-input name="name" label="Teléfono" placeholder="Documento del evento"
                               fgroup-class="col-md-6"/>
+                    </div>
+                    
+                    <div class="row">
+                        <x-adminlte-input name="name" label="Dirección" placeholder="Documento del evento"
+                              fgroup-class="col-md-6"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <x-adminlte-button label="Registrar" theme="primary" icon="fas fa-save"/>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

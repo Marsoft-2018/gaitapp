@@ -331,12 +331,12 @@ return [
                 [
                     'text' => 'Registrar',
                     'url'  => 'admin/participantes/create',
-                    'icon' => 'fas fa-people-arrows',
+                    'icon' => 'fas fa-user-tag',
                 ],
                 [
                     'text' => 'Listar',
                     'url'  => 'admin/participantes',
-                    'icon' => 'fas fa-people-arrows',
+                    'icon' => 'fas fa-list-alt',
                 ]
             ],
         ],
