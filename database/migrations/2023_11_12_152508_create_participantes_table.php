@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string("documento")->unique();
             $table->string("tipo_documento");
             $table->string("primer_nombre");
+            $table->string("segundo_nombre")->nullable();
             $table->string("primer_apellido");
-            $table->string("segundo_nombre");
-            $table->string("segundo_apellido");
+            $table->string("segundo_apellido")->nullable();
             $table->string("nombre_completo");
-            $table->string("telefono",30);
-            $table->string("direccion");
+            $table->string("telefono",30)->nullable();
+            $table->string("direccion")->nullable();
             $table->timestamps();
         });
     }

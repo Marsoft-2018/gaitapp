@@ -8,51 +8,105 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header">
+                    @if(session('info'))
+                    <div class="alert alert-success">
+                        <strong>{{session('info')}}</strong>
+                    </div>
+                    @endif
+                </div>
                 <div class="card-body">
-                    <h3 class="mb-0">Formulario de registro para participantes</h3>
+                    <h3 class="mb-0">Formulario para registro de participantes</h3>
+                    <hr>
+                    {!! Form::open(['route' => 'admin.participantes.store']) !!}
                     <div class="row">
-                        <x-adminlte-input name="name" label="Primer Nombre" fgroup-class="col-md-6"/>
-                    </div>
-                    <div class="row">
-                        <x-adminlte-input name="name" label="Segundo Nombre" fgroup-class="col-md-6"/>
-                    </div>
-                    <div class="row">
-                        <x-adminlte-input name="name" label="Primer Apellido" fgroup-class="col-md-6"/>
-                    </div>
-                    <div class="row">
-                        <x-adminlte-input name="name" label="Segundo Apellido" fgroup-class="col-md-6"/>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <x-adminlte-select name="selBasic" label="Tipo Documento" >
-                                <option>Option 1</option>
-                                <option disabled>Option 2</option>
-                                <option selected>Option 3</option>
-                            </x-adminlte-select>
+                        <div class="form-group col-md-12">
+                            {!! Form::label('primer_nombre', 'Primer Nombre') !!}
+                            {!! Form::text('primer_nombre', null,['class' => 'form-control col-md-6','placeholder' => 'Ingrese el primer nombre del participante','onchange' =>"nombreCompleto()"]) !!}                            
+                            @error('primer_nombre')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
-                        <x-adminlte-input name="name" label="Documento" placeholder="Ingrese el número del documento"
-                              fgroup-class="col-md-6"/>
+                        <div class="form-group col-md-12">
+                            {!! Form::label('segundo_nombre', 'Segundo Nombre') !!}
+                            {!! Form::text('segundo_nombre', null,['class' => 'form-control col-md-6','placeholder' => 'Ingrese el segundo nombre del participante','onchange' =>"nombreCompleto()"]) !!}
+                        </div>
                     </div>
-                    
                     <div class="row">
-                        <x-adminlte-input name="name" label="Teléfono" placeholder="Documento del evento"
-                              fgroup-class="col-md-6"/>
+                        <div class="form-group col-md-12">
+                            {!! Form::label('primer_apellido', 'Primer Apellido') !!}
+                            {!! Form::text('primer_apellido', null,['class' => 'form-control col-md-6','placeholder' => 'Ingrese el primer apellido del participante','onchange' =>"nombreCompleto()"]) !!}
+                            @error('primer_apellido')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
                     </div>
-                    
                     <div class="row">
-                        <x-adminlte-input name="name" label="Dirección" placeholder="Documento del evento"
-                              fgroup-class="col-md-6"/>
+                        <div class="form-group col-md-12">
+                            {!! Form::label('segundo_apellido', 'Segundo Apellido') !!}
+                            {!! Form::text('segundo_apellido', null,['class' => 'form-control col-md-6','placeholder' => 'Ingrese el segundo apellido del participante','onchange' =>"nombreCompleto()"]) !!}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            {!! Form::label('nombre_completo', 'Nombre completo') !!}
+                            {!! Form::text('nombre_completo', null,['class' => 'form-control col-md-6']) !!}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            {!! Form::label('tipo_documento', 'Tipo de documento') !!}
+                            {!! Form::select('tipo_documento', ['CC' => 'Cédula de ciudadanía', 'CE' => 'Cédula de extrangería', 'NIT' => 'Nit','RUT' => 'RUT'], null, ['placeholder' => 'Seleccione...','class'=>'form-control col-md-6']) !!}
+                            @error('tipo_documento')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            {!! Form::label('documento', 'Documento') !!}
+                            {!! Form::text('documento', null,['class' => 'form-control col-md-6']) !!}
+                            @error('documento')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            {!! Form::label('telefono', 'Teléfono') !!}
+                            {!! Form::text('telefono', null,['class' => 'form-control col-md-6']) !!}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            {!! Form::label('direccion', 'Dirección') !!}
+                            {!! Form::text('direccion', null,['class' => 'form-control col-md-6']) !!}
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <x-adminlte-button label="Registrar" theme="primary" icon="fas fa-save"/>
-                        </div>
-                        
+                            {!! Form::submit('Guardar', ['class' => 'btn btn-success btn-lg']) !!}
+                        </div>                        
                     </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
+@stop
+
+@section('js')
+    <script>
+        function nombreCompleto(){
+            primerNombre = document.getElementById("primer_nombre").value;
+            segundoNombre = document.getElementById("segundo_nombre").value;
+            primerApellido = document.getElementById("primer_apellido").value;
+            segundoApellido = document.getElementById("segundo_apellido").value;
+            nombre = primerNombre+" "+segundoNombre+" "+primerApellido+" "+segundoApellido;
+
+            document.getElementById("nombre_completo").value = nombre;
+        }
+    </script>
 @stop

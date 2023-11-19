@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\EgresoController;
+use App\Http\Controllers\Admin\PucController;
+use App\Http\Controllers\Admin\ConceptoController;
 use App\Http\Controllers\Admin\ParticipanteController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,20 +31,8 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-Route::get('/admin/cuentas', function() {
-    return view('admin/cuentas');
-})->name('cuentas')->middleware('auth');
+Route::resource('participantes',ParticipanteController::class)->names('admin.participantes')->middleware('auth');
+Route::resource('conceptos',ConceptoController::class)->names('admin.conceptos')->middleware('auth');
+Route::resource('pucs',PucController::class)->names('admin.pucs')->middleware('auth');//ruta para el controlador del plan unico de cuentas puc
 
-
-Route::resource('participantes',ParticipanteController::class,)->names('admin.participantes');
-// Route::get('/admin/participantes',[ParticipanteController::class,'index'], function() {
-//     return view('admin/participantes/index');
-// })->name('participantes')->middleware('auth');
-
-// Route::get('/admin/participantes/create', function() {
-//     return view('admin/participantes/create');
-// })->name('participantes')->middleware('auth');
-
-// Route::post('/admin/participantes/create',[ParticipanteController::class,'store'], function() {
-//     return view('admin/participantes/create');
-// })->name('participantes')->middleware('auth');
+Route::resource('egresos',EgresoController::class)->names('admin.egresos')->middleware('auth');

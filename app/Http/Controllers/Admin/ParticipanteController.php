@@ -13,7 +13,16 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
-        return view('admin.participantes.index');
+        $participantes = Participante::all();
+        $heads = [
+            'id',
+            'Nombre',
+            'Teléfono',
+            'Dirección',           
+            'Editar',
+            'Eliminar'
+         ];
+        return view('admin.participantes.index', compact('participantes','heads'));
     }
 
     /**
@@ -21,7 +30,7 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.participantes.create');
     }
 
     /**
@@ -29,42 +38,65 @@ class ParticipanteController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'documento' => "required|unique:participantes,documento",
+                'tipo_documento' => "required",
+                'primer_nombre' => "required",
+                'primer_apellido' => "required",
+                'nombre_completo' => "required"
+            ]
+            );
         Participante::create($request->all());
-         return response()->json([
-            'res' => true,
-            "msg" => "Participante creado con éxito"
-         ]);
+        //  return response()->json([
+        //     'res' => true,
+        //     "msg" => "Participante creado con éxito"
+        //  ]);
+        $participantes = Participante::all();
+        return redirect()->route('admin.participantes.index', compact('participantes'))->with('info','El participante se creó con éxito');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Participante $participante)
     {
-        //
+        return view('admin.participantes.show',compact('participante'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $participante)
+    public function edit(Participante $participante)
     {
-        //
+        return view('admin.participantes.edit',compact('participante'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $participante)
+    public function update(Request $request, Participante $participante)
     {
-        //
+        $request->validate(
+            [
+                'documento' => "required|unique:participantes,documento,$participante->id",
+                'tipo_documento' => "required",
+                'primer_nombre' => "required",
+                'primer_apellido' => "required",
+                'nombre_completo' => "required"
+            ]
+            );
+        
+        $participante->update($request->all());
+        return redirect()->route('admin.participantes.edit', compact('participante'))->with('info','El participante se modificó con éxito');    
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $participante)
+    public function destroy(Participante $participante)
     {
-        //
+        $participante->delete();
+        return redirect()->route('admin.participantes.index', compact('participante'))->with('info','El participante se eliminó con éxito');
     }
 }

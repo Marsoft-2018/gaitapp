@@ -18,9 +18,10 @@ return new class extends Migration
             $table->date("fecha");
             $table->decimal('valor', 10, 2);
             $table->string("id_concepto");
-            $table->string("elaborado");
-            $table->string("aprobado");
-            $table->string("contabilizado");            
+            $table->string("elaborado")->nullable();
+            $table->string("aprobado")->nullable();
+            $table->string("contabilizado")->nullable();  
+            $table->string("estado");          
             $table->timestamps();
         });
     }
