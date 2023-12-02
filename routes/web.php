@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home')->middleware('auth');;
 
 Auth::routes();
 
@@ -27,12 +27,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+// Route::get('/home', function() {
+//     return view('home');
+// })->name('home')->middleware('auth');
 
 Route::resource('participantes',ParticipanteController::class)->names('admin.participantes')->middleware('auth');
 Route::resource('conceptos',ConceptoController::class)->names('admin.conceptos')->middleware('auth');
 Route::resource('pucs',PucController::class)->names('admin.pucs')->middleware('auth');//ruta para el controlador del plan unico de cuentas puc
-
 Route::resource('egresos',EgresoController::class)->names('admin.egresos')->middleware('auth');

@@ -25,11 +25,17 @@
                             <td>{{$egreso->id}}</td>
                             <td>{{$egreso->consecutivo}}</td>
                             <td>{{$egreso->fecha}}</td>
-                            <td>{{$egreso->participante}}</td>
+                            <td>{{$egreso->participante->nombre_completo}}</td>
                             <td>{{$egreso->valor}}</td>
-                            <td>{{$egreso->concepto}}</td>
+                            <td>
+                                @foreach($egreso->conceptos as $concepto)
+                                <p>
+                                    {{ $concepto->descripcion }} 
+                                </p>
+                                @endforeach
+                            </td>
                             <td width="10px">
-                                <a href="{{route('admin.egresos.edit',$egreso)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                <a href="{{route('admin.egresos.show',$egreso)}}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                             </td>
                             <td width="10px">
                                 <form action="{{route('admin.egresos.destroy',$egreso)}}" method="post">

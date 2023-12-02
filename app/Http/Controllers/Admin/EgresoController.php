@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Egreso;
+use App\Models\Concepto;
+use App\Models\Participante;
+use App\Models\EgresoDetalle;
 
 class EgresoController extends Controller
 {
@@ -21,8 +24,8 @@ class EgresoController extends Controller
             'Participante',
             'Valor',
             'Concepto',
-            'Editar',
-            'Eliminar'
+            'Ver',
+            'Anular'
         ];
         return view('admin.egresos.index', compact('egresos','heads'));
     }
@@ -32,7 +35,17 @@ class EgresoController extends Controller
      */
     public function create()
     {
-        return view('admin.egresos.create');
+        $dataParticipantes = Participante::all();
+        $dataConceptos = Concepto::all();
+        $conceptos = [];
+        $participantes = [];
+        foreach ($dataConceptos as  $concepto) {
+            $conceptos[$concepto->id] = $concepto->descripcion;
+        }
+        foreach ($dataParticipantes as  $participante) {
+            $participantes[$participante->id] = $participante->nombre_completo;
+        }
+        return view('admin.egresos.create', compact('participantes','conceptos'));
     }
 
     /**

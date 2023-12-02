@@ -318,11 +318,21 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'PRINCIPAL'],
         [
             'text' => 'Pagos',
-            'url'  => 'egresos',
-            'icon' => 'fas fa-file-invoice-dollar',
+            'icon' => "fas fa-regular fa-coins",
+            'submenu' => [
+                [
+                    'text' => 'Registrar',
+                    'url'  => 'egresos/create',
+                    'icon' => 'fw fas fa-file-invoice-dollar',
+                ],
+                [
+                    'text' => 'Listar',
+                    'url'  => 'egresos',
+                    'icon' => 'fw fas fa-list-alt',
+                ]
+                ],
         ],
         [
             'text' => 'Participantes',
@@ -354,7 +364,7 @@ return [
         ['header' => 'CONFIGURAR CUENTA'],
         [
             'text' => 'Perfil',
-            'url'  => 'admin/settings',
+            'url'  => 'auth/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

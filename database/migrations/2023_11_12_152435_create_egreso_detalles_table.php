@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('egreso_detalles', function (Blueprint $table) {
             $table->id();
-            $table->string("id_egreso");
-            $table->string("id_cuenta");
+            $table->unsignedBigInteger("id_egreso");
+            $table->unsignedBigInteger("id_cuenta");
             $table->decimal("debito",10,2)->nullable();            
             $table->decimal("credito",10,2)->nullable();            
+            $table->foreign("id_egreso")->references('id')->on('egresos')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign("id_cuenta")->references('id')->on('pucs')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

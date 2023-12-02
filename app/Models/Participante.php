@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Participante extends Model
 {
@@ -19,4 +20,8 @@ class Participante extends Model
         'telefono',
         'direccion',
     ];
+
+    public function egresos():HasMany{
+        return $this->hasMany(Egreso::class);
+    }
 }

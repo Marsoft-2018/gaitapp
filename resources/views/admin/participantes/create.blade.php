@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             {!! Form::label('tipo_documento', 'Tipo de documento') !!}
-                            {!! Form::select('tipo_documento', ['CC' => 'Cédula de ciudadanía', 'CE' => 'Cédula de extrangería', 'NIT' => 'Nit','RUT' => 'RUT'], null, ['placeholder' => 'Seleccione...','class'=>'form-control col-md-6']) !!}
+                            {!! Form::select('tipo_documento', ['CC' => 'Cédula de ciudadanía', 'CE' => 'Cédula de extrangería', 'NIT' => 'NIT','RUT' => 'RUT'], null, ['placeholder' => 'Seleccione...','class'=>'form-control col-md-6']) !!}
                             @error('tipo_documento')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -101,10 +101,18 @@
     <script>
         function nombreCompleto(){
             primerNombre = document.getElementById("primer_nombre").value;
-            segundoNombre = document.getElementById("segundo_nombre").value;
+            segundoNombre = "";
+            if(document.getElementById("segundo_nombre").value != "")
+            {
+                segundoNombre = document.getElementById("segundo_nombre").value+" ";
+            }
             primerApellido = document.getElementById("primer_apellido").value;
-            segundoApellido = document.getElementById("segundo_apellido").value;
-            nombre = primerNombre+" "+segundoNombre+" "+primerApellido+" "+segundoApellido;
+            segundoApellido = "";
+            if(document.getElementById("segundo_apellido").value != "")
+            {
+                segundoApellido = " "+document.getElementById("segundo_apellido").value;
+            }
+            nombre = primerNombre+" "+segundoNombre+primerApellido+segundoApellido;
 
             document.getElementById("nombre_completo").value = nombre;
         }

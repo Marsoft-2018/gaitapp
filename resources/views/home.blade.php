@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="card mt-5">
                 <div class="card-body">
-                    <p class="mb-0">You are logged in!</p>
+                    <p class="mb-0">Bienvenido!</p>
                 </div>
             </div>
         </div>
