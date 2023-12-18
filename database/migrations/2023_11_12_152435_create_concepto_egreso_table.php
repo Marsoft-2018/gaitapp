@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('egreso_detalles', function (Blueprint $table) {
+        Schema::create('concepto_egreso', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("id_egreso");
-            $table->unsignedBigInteger("id_cuenta");
-            $table->decimal("debito",10,2)->nullable();            
-            $table->decimal("credito",10,2)->nullable();            
+            $table->unsignedBigInteger("id_concepto");          
             $table->foreign("id_egreso")->references('id')->on('egresos')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign("id_cuenta")->references('id')->on('pucs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign("id_concepto")->references('id')->on('conceptos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('egreso_detalles');
+        Schema::dropIfExists('concepto_egreso');
     }
 };

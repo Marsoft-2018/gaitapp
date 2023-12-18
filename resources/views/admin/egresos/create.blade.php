@@ -37,20 +37,20 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             
-                            {!! Form::label('id_participante', 'Pagado a') !!}
-                            {!! Form::select('id_participante', $participantes, null, ['placeholder' => 'Seleccione...','class'=>'form-control col-md-6']) !!}
+                            {!! Form::label('participante_id', 'Pagado a') !!}<br>
+                            {!! Form::select('participante_id', $participantes, null, ['placeholder' => 'Seleccione...','class'=>'form-control col-md-6 select2-single']) !!}
                                                 
-                            @error('id_participante')
+                            @error('participante_id')
                                 <span class="text-danger">El campo pagado a no puede quedar vacío por favor ingresa el dato</span>
                             @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            {!! Form::label('id_concepto', 'Concepto del pago') !!}
+                            {!! Form::label('conceptos', 'Concepto del pago') !!}<br>
                             
-                            {!! Form::select('id_concepto', $conceptos, null, ['placeholder' => 'Seleccione...','class'=>'form-control col-md-6']) !!}                     
-                            @error('id_concepto')
+                            {!! Form::select('conceptos[]', $conceptos, null, ['multiple'=>'multiple','id'=>'conceptos','class'=>'form-control col-md-6 select2-single']) !!}                     
+                            @error('conceptos')
                                 <span class="text-danger">El campo con el concepto no puede quedar sin diligenciar</span>
                             @enderror
                         </div>
@@ -73,55 +73,30 @@
                             @enderror
                         </div>
                     </div>
-                    <hr>
-                    <h3>Detalle del egreso</h3>
-                    <hr>
                     <div class="row">
-                        <div class="form-group col-md-3">
-                            {!! Form::label('codigo', 'Código de la cuenta') !!}
-                            {!! Form::text('codigo', null,['class' => 'form-control col-md-6']) !!}                            
-                            @error('codigo')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-3">
-                            {!! Form::label('debito', 'Débito') !!}
-                            {!! Form::text('debito', null,['class' => 'form-control col-md-6']) !!}                            
-                            @error('debito')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-3">
-                            {!! Form::label('credito', 'Crédito') !!}
-                            {!! Form::text('credito', null,['class' => 'form-control col-md-6']) !!}                            
-                            @error('credito')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-3">
-                            <button class="btn btn-success mt-4"><i class="fa fa-plus"> </i>Añadir</button>
-                        </div>
-                    </div>
-                    <hr>
-                    Más cuentas
-                    <hr>
-                    <div class="row">
-                        <div class="form-group col-sm-12 col-md-4">
-                            {!! Form::label('elaborado', 'Elaborado por') !!}
-                            {!! Form::text('elaborado', null,['class' => 'form-control col-md-6']) !!}                            
+                        <div class="form-group col-md-12">
+                            {!! Form::label('cheque_numero', 'Numero cheque') !!}
+                            {!! Form::number('cheque_numero', null, ['placeholder' => 'por favor ingrese el número del cheque en caso de que haya seleccionado esa forma de pago','class'=>'form-control col-md-6']) !!}
                             
                         </div>
-                        <div class="form-group col-sm-12 col-md-4">
-                            {!! Form::label('aprobado', 'Aprobado por') !!}
-                            {!! Form::text('aprobado', null,['class' => 'form-control col-md-6']) !!}                            
-                           
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            {!! Form::label('banco_id', 'Banco') !!}<br>
+                            {!! Form::select('banco_id', $bancos, null, ['placeholder' => 'Seleccione...','id'=>'bancos','class'=>'form-control col-md-6 select2-single']) !!}
+                            @error('banco_id')
+                                <span class="text-danger">Por favor selecciona la forma de pago para el egreso</span>
+                            @enderror
                         </div>
-                        <div class="form-group col-sm-12 col-md-4">
-                            {!! Form::label('contabilizado', 'Contabilizado por') !!}
-                            {!! Form::text('contabilizado', null,['class' => 'form-control col-md-6']) !!}                            
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            {!! Form::label('deduccions','Deducciones') !!}<br>
+                            {!! Form::select('deduccions[]', $deducciones, null, ['multiple'=>'multiple', 'id'=>'deduccions','class'=>'form-control col-md-6 select2-single']) !!}
                            
                         </div>
                     </div>
+                    <hr>
                     <div class="row">
                         <div class="col-md-6">
                             {!! Form::submit('Pagar', ['class' => 'btn btn-success btn-lg']) !!}
@@ -132,4 +107,18 @@
             </div>
         </div>
     </div>
+@stop
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@stop
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2-single').select2({
+                theme: "classic"
+            });
+        });        
+    </script>
+
 @stop

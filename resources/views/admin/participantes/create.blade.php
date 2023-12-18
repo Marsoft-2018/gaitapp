@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Administrar participantes</h1>
+    <h1 class="m-0 text-dark">Administrar beneficiarios</h1>
 @stop
 
 @section('content')
@@ -16,7 +16,7 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <h3 class="mb-0">Formulario para registro de participantes</h3>
+                    <h3 class="mb-0">Formulario para registro de beneficiarios</h3>
                     <hr>
                     {!! Form::open(['route' => 'admin.participantes.store']) !!}
                     <div class="row">

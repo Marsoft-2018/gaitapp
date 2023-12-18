@@ -291,26 +291,17 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+        /*[
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
-        ],
+        ],*/
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'Buscar...',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
         [
             'text'        => 'Pendientes',
             'url'         => 'admin/pages',
@@ -335,7 +326,7 @@ return [
                 ],
         ],
         [
-            'text' => 'Participantes',
+            'text' => 'Beneficiarios',
             'icon' => 'fas fa-people-arrows',
             'submenu'  => [
                 [
@@ -352,8 +343,8 @@ return [
         ],
         ['header' => 'CONFIGURACION'],
         [
-            'text' => 'Cuentas PUC',
-            'url'  => 'pucs',
+            'text' => 'Bancos',
+            'url'  => 'bancos',
             'icon' => 'fas fa-donate',
         ],
         [
@@ -361,16 +352,21 @@ return [
             'url'  => 'conceptos',
             'icon' => 'fas fa-comments-dollar',
         ],
+        [
+            'text' => 'Deducciones',
+            'url'  => 'deduccions',
+            'icon' => 'fas fa-hand-holding-usd',
+        ],
         ['header' => 'CONFIGURAR CUENTA'],
         [
-            'text' => 'Perfil',
-            'url'  => 'auth/profile',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Usuarios',
+            'url'  => 'usuarios',
+            'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Cambiar contraseña',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Roles',
+            'url'  => 'roles',
+            'icon' => 'fas fa-user-lock',
         ]
     ],
 

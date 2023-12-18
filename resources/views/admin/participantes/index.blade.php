@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Listado de participantes</h1>
+    <h1 class="m-0 text-dark">Listado de beneficiarios</h1>
 @stop
 
 @section('content')

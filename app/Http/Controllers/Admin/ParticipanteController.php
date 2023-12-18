@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -42,8 +42,6 @@ class ParticipanteController extends Controller
             [
                 'documento' => "required|unique:participantes,documento",
                 'tipo_documento' => "required",
-                'primer_nombre' => "required",
-                'primer_apellido' => "required",
                 'nombre_completo' => "required"
             ]
             );

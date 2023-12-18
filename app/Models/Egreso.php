@@ -11,20 +11,27 @@ class Egreso extends Model
     use HasFactory;
     protected $fillable =[
        'consecutivo',
-        'id_participante',
+        'participante_id',
+        'forma_pago',
         'fecha',
-        'valor',
-        'id_concepto',
-        'elaborado',
-        'aprobado',
-        'contabilizado'        
+        'cheque_numero',
+        'banco_id',
+        'valor'       
     ];
 
     public function participante(){
-        return $this->hasOne(Participante::class,'id','id_participante');
+        return $this->hasOne(Participante::class,'id','participante_id');
     }
 
     public function conceptos(){
-        return $this->hasMany(Concepto::class,'id','id_concepto');
+        return $this->belongsToMany("App\Models\Concepto");
+    }
+    
+    public function deduccions(){    
+        return $this->belongsToMany("App\Models\Deduccion");
+    }
+
+    public function banco(){
+        return $this->hasOne(Banco::class,'id','banco_id');
     }
 }
